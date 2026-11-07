@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8eef1">
+  <title>Ajakan Nonton Bareng 🍿</title>
+  <style>
+    :root {
+      --ink: #302a35;
+      --muted: #766d79;
+      --rose: #b85f7b;
+      --rose-dark: #91435d;
+      --cream: #fffaf7;
+      --line: #f0dfe5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; padding: 28px 16px;
+      display: grid; place-items: center;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 15%, #f5dce5 0, transparent 28%),
+        radial-gradient(circle at 90% 85%, #e9e1f5 0, transparent 30%),
+        #fbf7f4;
+    }
+    .card {
+      width: min(100%, 690px); overflow: hidden; position: relative;
+      background: rgba(255,250,247,.94); border: 1px solid #fff;
+      border-radius: 28px; box-shadow: 0 24px 70px rgba(83,53,68,.13);
+    }
+    .top {
+      padding: 34px 34px 28px; text-align: center; color: white;
+      background: linear-gradient(135deg, #bd7189, #8e6e9e);
+      position: relative;
+    }
+    .top:after {
+      content: ""; position: absolute; width: 180px; height: 180px;
+      border: 1px solid rgba(255,255,255,.22); border-radius: 50%;
+      right: -55px; top: -90px;
+    }
+    .eyebrow {
+      display: inline-block; padding: 7px 13px; border-radius: 30px;
+      background: rgba(255,255,255,.16); font-size: 12px;
+      letter-spacing: 1.4px; text-transform: uppercase;
+    }
+    h1 { margin: 18px 0 8px; font-family: Georgia, serif; font-size: clamp(30px, 6vw, 46px); font-weight: 500; }
+    .top p { margin: 0; color: rgba(255,255,255,.88); font-size: 14px; }
+    .content { padding: 30px 34px 34px; }
+    .date-now { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 25px; }
+    .date-now strong { color: var(--rose-dark); font-weight: 650; }
+    .message {
+      padding: 23px 24px; border: 1px solid var(--line);
+      border-radius: 20px; background: #fff;
+      font-family: Georgia, serif; font-size: 19px; line-height: 1.7;
+    }
+    .message p { margin: 0 0 13px; }
+    .message p:last-child { margin-bottom: 0; }
+    .details {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 22px 0;
+    }
+    .field {
+      padding: 15px; border-radius: 16px; background: #f8f0f2;
+      border: 1px solid #f2e3e8;
+    }
+    .field label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; }
+    input {
+      width: 100%; border: 0; outline: 0; background: transparent;
+      color: var(--ink); font: inherit; font-size: 14px;
+    }
+    input::placeholder { color: #a69aa2; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    button {
+      flex: 1 1 190px; border: 0; border-radius: 14px; padding: 14px 18px;
+      font: inherit; font-weight: 650; cursor: pointer; transition: .2s ease;
+    }
+    button:hover { transform: translateY(-2px); }
+    .yes { background: var(--rose); color: white; box-shadow: 0 8px 18px #b85f7b33; }
+    .yes:hover { background: var(--rose-dark); }
+    .later { background: #f1ebf1; color: #65596a; }
+    #response {
+      display: none; margin-top: 17px; padding: 15px 17px;
+      border-radius: 14px; background: #f7f0f5; color: #594b5c;
+      line-height: 1.6; font-size: 14px;
+    }
+    .foot { text-align: center; margin-top: 25px; color: #948994; font-size: 12px; line-height: 1.6; }
+    .popcorn { font-size: 28px; }
+    @media (max-width: 520px) {
+      .top { padding: 29px 20px 24px; }
+      .content { padding: 24px 19px 27px; }
+      .message { padding: 19px; font-size: 17px; }
+      .details { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <header class="top">
+      <div class="eyebrow">A little invitation</div>
+      <h1>Movie time?</h1>
+      <p>Ajakan sederhana, tanpa paksaan 😊</p>
+    </header>
+
+    <section class="content">
+      <div class="date-now">Hari ini · <strong id="today"></strong></div>
+
+      <div class="message">
+        <p>Hai, Fatimah! 👋</p>
+        <p>Aku mau ngajak kamu nonton bareng kalau kamu ada waktu dan berkenan.</p>
+        <p>Kayaknya seru bisa menikmati film sambil santai, sekalian ngobrol ringan. Kalau kamu tertarik, kita bisa tentukan film, hari, dan tempatnya bareng-bareng.</p>
+        <p>Tapi kalau sedang ada kesibukan atau belum sempat, nggak apa-apa sama sekali, ya. Santai saja. 😊</p>
+      </div>
+
+      <div class="details">
+        <div class="field">
+          <label for="movieDate">Rencana tanggal (opsional)</label>
+          <input id="movieDate" type="date">
+        </div>
+        <div class="field">
+          <label for="moviePlace">Tempat / bioskop (opsional)</label>
+          <input id="moviePlace" type="text" placeholder="Bisa kita tentukan bersama">
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="yes" onclick="respond('yes')">Boleh, aku tertarik 🍿</button>
+        <button class="later" onclick="respond('later')">Nanti aku kabari, ya</button>
+      </div>
+      <div id="response" role="status" aria-live="polite"></div>
+      <div class="foot">
+        Tidak harus langsung menjawab. Yang penting sama-sama nyaman.<br>
+        Dibuat dengan niat baik ✨
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const today = new Date();
+    document.getElementById('today').textContent = new Intl.DateTimeFormat('id-ID', {
+      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+    }).format(today);
+
+    function respond(answer) {
+      const box = document.getElementById('response');
+      box.style.display = 'block';
+      if (answer === 'yes') {
+        box.textContent = 'Wah, terima kasih! 😊 Nanti kita obrolkan waktu, film, dan tempat yang sama-sama nyaman, ya.';
+      } else {
+        box.textContent = 'Tentu, tidak masalah. Terima kasih sudah memberi kabar. Semoga harimu menyenangkan! 😊';
+      }
+    }
+  </script>
+</body>
+</html>
